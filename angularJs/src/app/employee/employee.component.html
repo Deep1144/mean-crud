@@ -1,0 +1,68 @@
+<mat-card class="w-50 mx-auto">
+  <form
+    class="example-form"
+    #employeeForm="ngForm"
+    (ngSubmit)="onSubmit(employeeForm)"
+  >
+    <mat-form-field class="example-full-width" [hidden]="true">
+      <input
+        matInput
+        name="_id"
+        #_id="ngModel"
+        [(ngModel)]="employeeService.selectedEmployee._id"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        name="name"
+        #name="ngModel"
+        [(ngModel)]="employeeService.selectedEmployee.name"
+        required
+      />
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Position</mat-label>
+      <input
+        matInput
+        name="position"
+        #position="ngModel"
+        [(ngModel)]="employeeService.selectedEmployee.position"
+        required
+      />
+    </mat-form-field>
+
+    <br />
+    <button mat-raised-button color="primary" [disabled]="!employeeForm.valid">
+      Submit
+    </button>
+  </form>
+</mat-card>
+
+<!-- <mat-list>
+  <mat-list-item *ngFor="let employee of employeeService.employees">
+    {{ employee.name }}
+    {{ employee.position }}
+    <mat-icon class="mx-5">delete_forever</mat-icon>
+  </mat-list-item>
+</mat-list> -->
+
+
+<mat-accordion multi="true" *ngIf="employeeService.employees.length > 0">
+  <mat-expansion-panel *ngFor="let employee of employeeService.employees">
+    <mat-expansion-panel-header>
+      {{ employee.name }}
+    </mat-expansion-panel-header>
+    <p>{{ employee.position }}</p>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="onUpdate(employee)" >EDIT</button>
+      <button mat-button color="warn"  (click)="onDelete(employee._id,employeeForm)"> DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="employeeService.employees.length <= 0">No posts added yet!</p>
