@@ -3,12 +3,13 @@ node + angular with mongodb crud
 
 use npm install in both the folders to install dependencies ..
 
-To start node Server : 
-cd nodeJs
-node ./bin/www
+To start node Server : <br>
+cd nodeJs <br>
+node ./bin/www <br>
 started at :http://localhost:500/
 
-To start Angular app : 
-cd angularJs
-ng serve -o
+<br>
+To start Angular app : <br>
+cd angularJs <br>
+ng serve -o <br>
 started at :http://localhost:4200/
